@@ -157,6 +157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rotador Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1186037388055515189, guid: 21d36421c4beda6489b62aeea58c6e0a, type: 3}
+      propertyPath: m_TagString
+      value: Bordes
+      objectReference: {fileID: 0}
     - target: {fileID: 4391030463870735365, guid: 21d36421c4beda6489b62aeea58c6e0a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -293,6 +297,10 @@ PrefabInstance:
     - target: {fileID: 1186037388055515189, guid: 21d36421c4beda6489b62aeea58c6e0a, type: 3}
       propertyPath: m_Name
       value: Rotador Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186037388055515189, guid: 21d36421c4beda6489b62aeea58c6e0a, type: 3}
+      propertyPath: m_TagString
+      value: Bordes
       objectReference: {fileID: 0}
     - target: {fileID: 4391030463870735365, guid: 21d36421c4beda6489b62aeea58c6e0a, type: 3}
       propertyPath: m_RootOrder
@@ -503,7 +511,7 @@ GameObject:
   - component: {fileID: 915733547}
   m_Layer: 0
   m_Name: Paredes2
-  m_TagString: Untagged
+  m_TagString: Bordes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -677,6 +685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rotador Variant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1186037388055515189, guid: 21d36421c4beda6489b62aeea58c6e0a, type: 3}
+      propertyPath: m_TagString
+      value: Bordes
+      objectReference: {fileID: 0}
     - target: {fileID: 4391030463870735365, guid: 21d36421c4beda6489b62aeea58c6e0a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -736,7 +748,7 @@ GameObject:
   - component: {fileID: 1419058884}
   m_Layer: 0
   m_Name: Paredes1
-  m_TagString: Untagged
+  m_TagString: Bordes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -892,7 +904,7 @@ GameObject:
   - component: {fileID: 2062207540}
   m_Layer: 0
   m_Name: Paredes3
-  m_TagString: Untagged
+  m_TagString: Bordes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1061,6 +1073,10 @@ PrefabInstance:
     - target: {fileID: 506133098020261329, guid: 4e434342da79e9d49b416b5c64c14bfb, type: 3}
       propertyPath: m_Name
       value: Paredes
+      objectReference: {fileID: 0}
+    - target: {fileID: 506133098020261329, guid: 4e434342da79e9d49b416b5c64c14bfb, type: 3}
+      propertyPath: m_TagString
+      value: Bordes
       objectReference: {fileID: 0}
     - target: {fileID: 3135509296723151329, guid: 4e434342da79e9d49b416b5c64c14bfb, type: 3}
       propertyPath: m_RootOrder
