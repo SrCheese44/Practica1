@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movimientos : MonoBehaviour
 {
@@ -33,7 +34,12 @@ public class Movimientos : MonoBehaviour
         move = Input.GetAxis("Vertical");
         rb.velocity = new Vector2(rb.velocity.x, move * speed);
 
-        if (stun == true)
+
+
+
+
+            //al tocar una pared, recibes stun
+            if (stun == true)
         {
             time = Time.deltaTime + time;
             rb.Sleep();
@@ -76,9 +82,20 @@ public class Movimientos : MonoBehaviour
         }
 
 
+        if (collision.gameObject.CompareTag("Final"))
+        {
 
+            Time.timeScale = 0;
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        }
 
     }
+
+    
+
+
 
 }
 
