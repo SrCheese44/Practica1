@@ -4,20 +4,27 @@ using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
+using UnityEngine.UI;
 public class Movimientos : MonoBehaviour
 {
     Rigidbody2D rb;
     SpriteRenderer rbSprite;
+
+
     Color inicial;
     //variables asociadas al movimiento
     public float speed;
     private float move;
 
+    private int ContadorMonedas;
+    public TMP_Text Coins;
+
     private bool stun;
     private float time;
+    public GameObject NivelEnd;
 
-  
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,9 +40,6 @@ public class Movimientos : MonoBehaviour
         
         move = Input.GetAxis("Vertical");
         rb.velocity = new Vector2(rb.velocity.x, move * speed);
-
-
-
 
 
             //al tocar una pared, recibes stun
@@ -58,7 +62,7 @@ public class Movimientos : MonoBehaviour
 
 
     }
-  
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bordes"))
@@ -76,9 +80,11 @@ public class Movimientos : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Coin"))
         {
-
-
             Destroy(collision.gameObject);
+
+            ContadorMonedas = ContadorMonedas + 1;
+            Coins.text = ContadorMonedas.ToString("Coins: 0");
+            
         }
 
 
@@ -86,11 +92,18 @@ public class Movimientos : MonoBehaviour
         {
 
             Time.timeScale = 0;
+            NivelEnd.SetActive(true);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+           Invoke("CargarNivel" , 3.0f);
 
         }
 
+
+
+        void CargarNivel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     

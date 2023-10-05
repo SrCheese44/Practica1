@@ -6,12 +6,14 @@ using System;
 using UnityEngine.SceneManagement;
 
 public class Contador : MonoBehaviour
-{
+{     
+
     public TMP_Text textoContador;
     private float tiempo = 5;
+    //Nombre de los menus
     public GameObject GameOver;
     public GameObject Pausa;
-    private bool isPaused = false;
+
     private bool Perdiste = false;
     void Start()
     {
@@ -20,10 +22,10 @@ public class Contador : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   //cuenta regresiva
         tiempo -= Time.deltaTime;
-        textoContador.text = tiempo.ToString();
-
+        textoContador.text = tiempo.ToString("#.00");
+        
         MenuPausa();
 
         if (tiempo <= 0)
@@ -40,28 +42,31 @@ public class Contador : MonoBehaviour
         {
             RestartCurrentScene();
         }
-
-
-
-
-
+       
     }
 
 
     void MenuPausa()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && Perdiste == false)
+      
+        // true si el panel esta activado, false si no lo está
+        if (!Perdiste)
         {
-            Pausa.SetActive(true);
-            PauseGame();
+            if (Input.GetKeyDown(KeyCode.Escape) && !Pausa.activeSelf)
+            {
+                Pausa.SetActive(true);
+                PauseGame();
 
 
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && Pausa.activeSelf)
+            {
+                Pausa.SetActive(false);
+                ResumeGame();
+            }
+
         }
-        else if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Pausa.SetActive(false);
-            ResumeGame();
-        }
+       
 
     }
 
