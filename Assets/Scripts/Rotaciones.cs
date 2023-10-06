@@ -7,14 +7,15 @@ using UnityEngine;
 public class Rotaciones : MonoBehaviour
 {
     public bool izquierda;
-    // Start is called before the first frame update
-    void Start()
+   
+    void Update()
     {
-        
+        RotacionObstaculo();
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    private void RotacionObstaculo()
     {
         if (izquierda == true)
         {
@@ -25,5 +26,8 @@ public class Rotaciones : MonoBehaviour
             transform.Rotate(Vector3.back, Time.deltaTime * 190);
 
         }
+
     }
+
+
 }

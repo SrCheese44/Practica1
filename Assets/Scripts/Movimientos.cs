@@ -34,16 +34,26 @@ public class Movimientos : MonoBehaviour
     }
     void Update()
     {
+        MovimientoPersonaje();
+        StunPersonaje();    
+    }
+
+
+    private void MovimientoPersonaje()
+    {
         //movimiento
         move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
-        
+
         move = Input.GetAxis("Vertical");
         rb.velocity = new Vector2(rb.velocity.x, move * speed);
+    }
 
+    private void StunPersonaje()
+    {
 
-            //al tocar una pared, recibes stun
-            if (stun == true)
+        //al tocar una pared, recibes stun
+        if (stun == true)
         {
             time = Time.deltaTime + time;
             rb.Sleep();
@@ -52,7 +62,7 @@ public class Movimientos : MonoBehaviour
         if (stun == true && time > 2)
         {
             rb.WakeUp();
-            stun = false;         
+            stun = false;
             time = 0;
             //rbSprite.color = new UnityEngine.Color(0.4589239f, 0.2766109f, 0.5283019f, 1f);
             rbSprite.color = inicial;
@@ -60,8 +70,9 @@ public class Movimientos : MonoBehaviour
         }
 
 
-
     }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
