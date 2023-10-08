@@ -6,11 +6,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
+using static UnityEngine.GraphicsBuffer;
+
 public class Movimientos : MonoBehaviour
 {
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     SpriteRenderer rbSprite;
 
+ 
 
     Color inicial;
     //variables asociadas al movimiento
@@ -19,10 +24,16 @@ public class Movimientos : MonoBehaviour
 
     private int ContadorMonedas;
     public TMP_Text Coins;
+    
 
     private bool stun;
     private float time;
+
     public GameObject NivelEnd;
+    public TMP_Text TextoNivelEnd;
+
+    public AudioSource Musica;
+    public AudioSource FX;
 
 
     void Start()
@@ -30,13 +41,18 @@ public class Movimientos : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rbSprite = GetComponent<SpriteRenderer>();
         inicial = rbSprite.color;
-       
+        FX = GameObject.Find("FX").GetComponent<AudioSource>();
+
     }
     void Update()
     {
         MovimientoPersonaje();
-        StunPersonaje();    
+        StunPersonaje();
+
+ 
+
     }
+
 
 
     private void MovimientoPersonaje()
@@ -94,7 +110,8 @@ public class Movimientos : MonoBehaviour
             Destroy(collision.gameObject);
 
             ContadorMonedas = ContadorMonedas + 1;
-            Coins.text = ContadorMonedas.ToString("Coins: 0");
+            Coins.text = ContadorMonedas.ToString("Platajena: 0  ");
+            FX.Play();
             
         }
 
@@ -104,8 +121,12 @@ public class Movimientos : MonoBehaviour
 
             Time.timeScale = 0;
             NivelEnd.SetActive(true);
+            Invoke("CargarNivel" , 3.0f);
 
-           Invoke("CargarNivel" , 3.0f);
+            MensajeFinalMonedas();
+
+
+            Musica.Stop();
 
         }
 
@@ -115,6 +136,39 @@ public class Movimientos : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+
+
+
+
+        void MensajeFinalMonedas()
+        {
+            if (ContadorMonedas == 0)
+            {
+                TextoNivelEnd.text = "Jeremias llegó, pero ¿a qué costo?";
+            }
+            else if (ContadorMonedas < 3)
+            {
+                TextoNivelEnd.text = "Jeremias ha conseguido escapar, pero le rugen las tripas...";
+            }
+            else if (ContadorMonedas <= 8)
+            {
+                TextoNivelEnd.text = "Jeremias se ha quedado satisfecho, pero no lleno...";
+            }
+            else if (ContadorMonedas == 9)
+            {
+                TextoNivelEnd.text = "Felicidades! Jeremias se ha comido todo! ";
+            }
+
+        }
+
+
+
+
+
+
+
+
     }
 
     

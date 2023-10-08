@@ -19,11 +19,11 @@ public class Rotaciones : MonoBehaviour
     {
         if (izquierda == true)
         {
-            transform.Rotate(Vector3.forward, Time.deltaTime * 190);
+            transform.Rotate(Vector3.forward, Time.deltaTime * 130);
         }
         else
         {
-            transform.Rotate(Vector3.back, Time.deltaTime * 190);
+            transform.Rotate(Vector3.back, Time.deltaTime * 100);
 
         }
 

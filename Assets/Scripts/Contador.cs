@@ -9,34 +9,23 @@ public class Contador : MonoBehaviour
 {     
 
     public TMP_Text textoContador;
-    private float tiempo = 5;
+    private float tiempo = 20;
     //Nombre de los menus
     public GameObject GameOver;
     public GameObject Pausa;
+    public AudioSource Musica;
 
     private bool Perdiste = false;
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
     {   //cuenta regresiva
         tiempo -= Time.deltaTime;
-        textoContador.text = tiempo.ToString("#.00");
+        textoContador.text = tiempo.ToString("#0.00");
         
         MenuPausa();
-
-        if (tiempo <= 0)
-        {
-            textoContador.text = "";
-            Time.timeScale = 0;
-
-            GameOver.SetActive(true);
-            Perdiste = true;
-
-        }
+        TiempoFinalizado();
+       
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -87,6 +76,29 @@ public class Contador : MonoBehaviour
        
 
     }
+
+
+
+
+
+    void TiempoFinalizado()
+    {
+        if (tiempo <= 0)
+        {
+            textoContador.text = "";
+            Time.timeScale = 0;
+
+            GameOver.SetActive(true);
+            Perdiste = true;
+            Musica.Stop();
+
+
+        }
+
+    }
+
+
+
 
 
 
