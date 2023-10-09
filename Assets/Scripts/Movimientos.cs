@@ -15,20 +15,19 @@ public class Movimientos : MonoBehaviour
     public Rigidbody2D rb;
     SpriteRenderer rbSprite;
 
- 
-
     Color inicial;
+
     //variables asociadas al movimiento
     public float speed;
     private float move;
-
+    //variables asociadas al numero de coleccionables
     private int ContadorMonedas;
     public TMP_Text Coins;
     
-
+    
     private bool stun;
     private float time;
-
+    //variables asociadas a la pantalla de final de nivel
     public GameObject NivelEnd;
     public TMP_Text TextoNivelEnd;
 
@@ -52,12 +51,13 @@ public class Movimientos : MonoBehaviour
  
 
     }
-
+    
 
 
     private void MovimientoPersonaje()
     {
-        //movimiento
+        //si quisieramos un impulso de algún tipo : rb.AddForce(Vector.(whatever)*(magnitud, 10 por ejemplo)*ForceMode2D.Impulse o Force)
+        //movimiento en base a la velocidad, esto quiere decir que tiene fisicas añadidas
         move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
@@ -72,11 +72,13 @@ public class Movimientos : MonoBehaviour
         if (stun == true)
         {
             time = Time.deltaTime + time;
+            //Con Sleep "detienes" solo al personaje
             rb.Sleep();
             rbSprite.color = Color.red;
         }
         if (stun == true && time > 2)
         {
+            //Con WakeUp "despiertas" solo al personaje
             rb.WakeUp();
             stun = false;
             time = 0;
@@ -106,7 +108,7 @@ public class Movimientos : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Coin"))
-        {
+        { //Destruir el objeto con el que se colisiona, para destruir al jugador sería  Destroy(gameObject);
             Destroy(collision.gameObject);
 
             ContadorMonedas = ContadorMonedas + 1;
@@ -121,7 +123,6 @@ public class Movimientos : MonoBehaviour
 
             Time.timeScale = 0;
             NivelEnd.SetActive(true);
-            Invoke("CargarNivel" , 3.0f);
 
             MensajeFinalMonedas();
 
@@ -132,10 +133,6 @@ public class Movimientos : MonoBehaviour
 
 
 
-        void CargarNivel()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
 
 
 
@@ -147,7 +144,7 @@ public class Movimientos : MonoBehaviour
             {
                 TextoNivelEnd.text = "Jeremias llegó, pero ¿a qué costo?";
             }
-            else if (ContadorMonedas < 3)
+            else if (ContadorMonedas <= 3)
             {
                 TextoNivelEnd.text = "Jeremias ha conseguido escapar, pero le rugen las tripas...";
             }

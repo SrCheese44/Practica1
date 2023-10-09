@@ -19,7 +19,7 @@ public class Contador : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   //cuenta regresiva
+    {   //cuenta regresiva, cambiar el signo la hace ascendente o descendente
         tiempo -= Time.deltaTime;
         textoContador.text = tiempo.ToString("#0.00");
         
@@ -44,14 +44,14 @@ public class Contador : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape) && !Pausa.activeSelf)
             {
                 Pausa.SetActive(true);
-                PauseGame();
+                Time.timeScale = 0;
 
 
             }
             else if (Input.GetKeyDown(KeyCode.Escape) && Pausa.activeSelf)
             {
                 Pausa.SetActive(false);
-                ResumeGame();
+                Time.timeScale = 1;
             }
 
         }
@@ -60,22 +60,6 @@ public class Contador : MonoBehaviour
     }
 
 
-
-    void PauseGame()
-    {
-        Time.timeScale = 0;
-   
-        
-    }
-
-   
-    void ResumeGame()
-    {
-        Time.timeScale = 1; 
-        
-       
-
-    }
 
 
 
@@ -104,6 +88,7 @@ public class Contador : MonoBehaviour
 
     void RestartCurrentScene()
     {
+        //Carga de nuevo la escena y reanuda el tiempo ya que muchas otras funciones lo detienen (gameover, pausa...)
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);

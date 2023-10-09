@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Rotaciones : MonoBehaviour
 {
+    //opción para que gire en sentido contrario y añadir variedad en el gameplay.
     public bool izquierda;
    
     void Update()
