@@ -14,8 +14,6 @@ public class Rotaciones : MonoBehaviour
         RotacionObstaculo();
     }
 
-
-
     private void RotacionObstaculo()
     {
         if (izquierda == true)

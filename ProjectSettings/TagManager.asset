@@ -8,6 +8,9 @@ TagManager:
   - Bordes
   - Final
   - Enemigo
+  - encogedor
+  - Desplazable
+  - Llave
   layers:
   - Default
   - TransparentFX

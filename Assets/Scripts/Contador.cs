@@ -10,6 +10,7 @@ public class Contador : MonoBehaviour
 
     public TMP_Text textoContador;
     private float tiempo = 20;
+
     //Nombre de los menus
     public GameObject GameOver;
     public GameObject Pausa;
